@@ -8,18 +8,18 @@ Before you begin, ensure that the following are installed on your machine:
 
 ## Steps to Create a Docker Image for a C Program
 
-### Step 1: Write Your C Program
+- Step 1: Write Your C Program
 Create a simple C program, for example, `main.c`:
 
-```c
+```
 #include <stdio.h>
 
 int main() {
     printf("Hello, Docker!\n");
     return 0;
 }
-
-### Step 2: Create a Dockerfile
+```
+- Step 2: Create a Dockerfile
 The Dockerfile will contain instructions to build your Docker image. In the same directory as your main.c file, create a file named Dockerfile (without any file extension) and add the following content:
 
 ```
@@ -39,15 +39,16 @@ RUN gcc -o myprogram main.c
 CMD ["./myprogram"]
 
 ```
-### Step 3: Build the Docker Image
+- Step 3: Build the Docker Image
 In the terminal, navigate to the direvikas83pal/fun-factsctory where the Dockerfile and main.c file are located. Run the following command to build your Docker image:
 ```
 docker build -t <image name> .
+
 ```
 
 This command tells Docker to build an image from the current directory (.) and tag it with the name my-c-program.
 
-### Step 4: Verify the Image Creation
+- Step 4: Verify the Image Creation
 Once the build completes, you can verify that the image was created by running:
 ```
 docker images
