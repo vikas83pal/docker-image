@@ -23,20 +23,29 @@ int main() {
 The Dockerfile will contain instructions to build your Docker image. In the same directory as your main.c file, create a file named Dockerfile (without any file extension) and add the following content:
 
 ```
-# Step 1: Use an official GCC image as a base image
-FROM gcc:latest
+# Step 1: Use a base image with GCC installed (Ubuntu image in this case)
+FROM ubuntu:20.04
 
-# Step 2: Set the working directory in the container
-WORKDIR /usr/src/app
+# Step 2: Set the environment variable to avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Step 3: Copy the C program source file into the container
-COPY main.c .
+# Step 3: Update package list and install build-essential (which includes gcc, make, etc.)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && apt-get clean
 
-# Step 4: Compile the C program using GCC
-RUN gcc -o myprogram main.c
+# Step 4: Set the working directory inside the container
+WORKDIR /app
 
-# Step 5: Define the default command to run the compiled program
-CMD ["./myprogram"]
+# Step 5: Copy the current directory (including demo.c) into the container
+COPY . /app
+
+# Step 6: Compile the demo.c program
+RUN gcc demo.c -o demo
+
+# Step 7: Define the command to run the compiled C program
+CMD ["./demo"]
+
 
 ```
 - Step 3: Build the Docker Image
