@@ -62,4 +62,10 @@ Once the build completes, you can verify that the image was created by running:
 ```
 docker images
 ```
+- Step 5: run the docker image
+
+```
+sudo docker run <image name>
+
+```
 You should see the my-c-program image listed in the output.
