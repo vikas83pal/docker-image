@@ -69,3 +69,17 @@ sudo docker run <image name>
 
 ```
 You should see the my-c-program image listed in the output.
+
+- Step 6: To create a docker container
+
+```
+docker run --name <container name> <image name>
+
+```
+
+- Steps 7: To create and run the container
+
+```
+docker run -it <conatiner name> <image name>
+
+```
